@@ -1,5 +1,13 @@
-// HTTP Server API to get set light level on NEXA Eqiupment.
-// Written by Stanley Skarshaug, Norway 05.02.2020
+/**********************************************************************************************
+    --- Arduino Ehternet HTTP webclient ---
+    Written by Stanley Skarshaug, 07.02.2020 - Norway.
+    Free to use - if credit is given to author.
+
+    Simple web client that sends a PUT request to webserver for logging purpose.
+    Prints the HTTP request to the serial monitor for debuging and
+    prints the first line of the HTTP respone to the serial monitor for debuging.
+    
+**********************************************************************************************/
 
 #include<SPI.h>
 #include<Ethernet.h>
@@ -50,7 +58,7 @@ void loop() {
 }
 
 /***********************************************************************************************************************/
-/*                    Send data to the web server with HTTP a request                                                   */
+/*                    Send data to the web server with HTTP a request                                                  */
 /***********************************************************************************************************************/
 void httpRequest(String request) {
 	if (client.connect(webServerURL_IP,80)) {  		    //connect the "Arduino" as client to the web server using web socket
@@ -61,7 +69,7 @@ void httpRequest(String request) {
 		Serial.println("Connected to host");
 		Serial.println("sending data to web server: " + String(webServerURL_IP));      
 		Serial.println(request);
-		Serial.println("Host: api.skarshaugs.no");
+		Serial.println("Host: " + hostName);
 		Serial.println("Connection: close"); 		
 		Serial.println(); 
 
